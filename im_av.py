@@ -15,7 +15,7 @@ mat_im = {} #Dictionary with the processed data images.
 for i in range(1,9): #For images named 1-8 in the number
 	archivo = "FinalFocusCam0"+str(i)+".bmp" #Make the filename
 	mat = scipy.misc.imread(archivo) #Read the file and transform it in a scipy ndarray with three dimensions: [Height, Width, 0-2{Chanel, original image RBG}]
-	mat_im[i-1] = sum( mat[1100:1500,800:1300,i] for i in range(len(mat[1,1,:])) )	
+	mat_im[i-1] = sum( mat[:,:,i] for i in range(len(mat[1,1,:])) )	
 
 
 mat_aver =  sum(image for image in mat_im.itervalues() ) / len(mat_im) #Making the average of the matrices. ".itervalues()" creates an iterator in the values of the dictionary.
